@@ -12,13 +12,20 @@ hist(data$arrival_date_week_number,main="Arrival Date Week Number Histogram",col
 
 #Distribution of the types of Hotels using pie chart
 counts<-table(data$hotel)
+
 resort<-counts["Resort Hotel"]
 city<-counts["City Hotel"]
+
 slices<-c(resort,city)
+lbls<-c("Resort Hotel","City Hotel")
+
 pct<-slices/sum(slices)*100
+
 lbls<-paste(lbls,pct)
 lbls<-paste(lbls,"%",sep="")
+
 pie(slices,labels=lbls,col=rainbow(length(lbls)),main="Distribution of the types of Hotels")
+
 
 
 #Distribution of lead time using density plot
