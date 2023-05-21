@@ -2,6 +2,7 @@ install.packages('ggplot2') #To Install
 library(ggplot2)           #To Import
 hotel_bookings<-read.csv("D:\\Downloads\\database\\hotel_bookings.csv")
 data<-na.omit(hotel_bookings)
+data$sum_nights<- data$stays_in_weekend_nights+ data$stays_in_week_nights
 
 
 
@@ -29,4 +30,10 @@ lines(density(data$lead_time,adjust=2),lty="dotted",col="darkgreen",lwd=3)
 #BarPlot of Arrival Month and count along with a DotPlot
 ggplot(data) + geom_bar(aes(x = arrival_date_month), position = "dodge") + xlab("Arrival Month") + ylab("Count")
 ggplot(data) + geom_point(aes(x = days_in_waiting_list, y = arrival_date_month)) + xlim(0,100) +xlab("Number of days in waiting list")+ ylab("Arrival Month")
+
+
+#BarPlot of total number of nights against hotel type
+ggplot(data) + geom_bar(aes(x =sum_nights, fill=hotel), position = "dodge")+ xlim(0,30) + xlab("Sum Of Nights") + ylab("Count")
+
+
 
