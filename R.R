@@ -46,9 +46,9 @@ ggplot(data) + geom_bar(aes(x =sum_nights, fill=hotel), position = "dodge")+ xli
 #Bar plot for City Reserved Rooms vs Assigned Rooms
 citydata<-subset(data,data$hotel=="City Hotel")
 cityRooms<-table(citydata$reserved_room_type , citydata$assigned_room_type)
-barplot(cityRooms,legend.text = TRUE, main="City Reserved Rooms vs Assigned Rooms",xlab="Room Type",col=rainbow(8))
+barplot(cityRooms,legend.text = TRUE, main="City: Reserved Rooms vs Assigned Rooms",xlab="Room Type",col=rainbow(8))
 
 #Bar plot for Resort Reserved Rooms vs Assigned Rooms
 resortdata<-subset(data,data$hotel=="Resort Hotel")
 resortRooms<-table(resortdata$reserved_room_type,resortdata$assigned_room_type)
-barplot(resortRooms,legend.text = TRUE, main="Reserved Rooms vs Assigned Rooms",xlab="Room Type",col=rainbow(8))
+barplot(resortRooms,legend.text = TRUE, main="Resort: Reserved Rooms vs Assigned Rooms",xlab="Room Type",col=rainbow(8))
