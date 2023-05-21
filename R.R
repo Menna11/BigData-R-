@@ -1,5 +1,9 @@
+install.packages('ggplot2') #To Install
+library(ggplot2)           #To Import
 hotel_bookings<-read.csv("D:\\Downloads\\database\\hotel_bookings.csv")
 data<-na.omit(hotel_bookings)
+
+
 
 #Distribution of Arrival week number using histogram
 hist(data$arrival_date_week_number,main="Arrival Date Week Number Histogram",col="lightblue",xlab="Week Number",breaks = 10)
@@ -20,3 +24,9 @@ pie(slices,labels=lbls,col=rainbow(length(lbls)),main="Distribution of the types
 hist(data$lead_time, prob=TRUE,col="lightblue",main="Lead Time Distribution",xlab="Lead Time")
 lines(density(data$lead_time),col="red",lwd=2)
 lines(density(data$lead_time,adjust=2),lty="dotted",col="darkgreen",lwd=3)
+
+
+#BarPlot of Arrival Month and count along with a DotPlot
+ggplot(data) + geom_bar(aes(x = arrival_date_month), position = "dodge") + xlab("Arrival Month") + ylab("Count")
+ggplot(data) + geom_point(aes(x = days_in_waiting_list, y = arrival_date_month)) + xlim(0,100) +xlab("Number of days in waiting list")+ ylab("Arrival Month")
+
