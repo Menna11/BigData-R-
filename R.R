@@ -6,11 +6,11 @@ data$sum_nights<- data$stays_in_weekend_nights+ data$stays_in_week_nights
 
 
 #Data Cleaning
- dataset <- replace(dataset, dataset == "NULL", NA)
- missing_values <- colSums(is.na(dataset))
- missing_values_count <- sum(is.na(dataset))
+ dataset <- replace(data, data == "NULL", NA)
+ missing_values <- colSums(is.na(data))
+ missing_values_count <- sum(is.na(data))
  nan_replacements <- list(children = 0.0, country = "Unknown", agent = 0, company = 0)
- full_data_cln <- dataset
+ full_data_cln <- data
  full_data_cln$children <- ifelse(is.na(full_data_cln$children), nan_replacements$children, full_data_cln$children)
  full_data_cln$country <- ifelse(is.na(full_data_cln$country), nan_replacements$country, full_data_cln$country)
  full_data_cln$agent <- ifelse(is.na(full_data_cln$agent), nan_replacements$agent, full_data_cln$agent)
