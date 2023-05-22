@@ -5,6 +5,22 @@ data<-na.omit(hotel_bookings)
 data$sum_nights<- data$stays_in_weekend_nights+ data$stays_in_week_nights
 
 
+#Data Cleaning
+ dataset <- replace(dataset, dataset == "NULL", NA)
+ missing_values <- colSums(is.na(dataset))
+ missing_values_count <- sum(is.na(dataset))
+ nan_replacements <- list(children = 0.0, country = "Unknown", agent = 0, company = 0)
+ full_data_cln <- dataset
+ full_data_cln$children <- ifelse(is.na(full_data_cln$children), nan_replacements$children, full_data_cln$children)
+ full_data_cln$country <- ifelse(is.na(full_data_cln$country), nan_replacements$country, full_data_cln$country)
+ full_data_cln$agent <- ifelse(is.na(full_data_cln$agent), nan_replacements$agent, full_data_cln$agent)
+ full_data_cln$company <- ifelse(is.na(full_data_cln$company), nan_replacements$company, full_data_cln$company)
+ full_data_cln$meal <- gsub("Undefined", "SC", full_data_cln$meal)
+ zero_guests <- full_data_cln$adults + full_data_cln$children + full_data_cln$babies == 0
+ full_data_cln <- full_data_cln[!zero_guests, ]
+
+
+
 
 #Distribution of Arrival week number using histogram
 hist(data$arrival_date_week_number,main="Arrival Date Week Number Histogram",col="lightblue",xlab="Week Number",breaks = 10)
