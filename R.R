@@ -50,13 +50,16 @@ lines(density(data$lead_time),col="red",lwd=2)
 lines(density(data$lead_time,adjust=2),lty="dotted",col="darkgreen",lwd=3)
 
 
-#BarPlot of Arrival Month and count along with a DotPlot
+#Bar Plot of Arrival Month and count along with a DotPlot
 ggplot(data) + geom_bar(aes(x = arrival_date_month), position = "dodge") + xlab("Arrival Month") + ylab("Count")
 ggplot(data) + geom_point(aes(x = days_in_waiting_list, y = arrival_date_month)) + xlim(0,100) +xlab("Number of days in waiting list")+ ylab("Arrival Month")
 
 
-#BarPlot of total number of nights against hotel type
+#Bar Plot of total number of nights against hotel type
 ggplot(data) + geom_bar(aes(x =sum_nights, fill=hotel), position = "dodge")+ xlim(0,30) + xlab("Sum Of Nights") + ylab("Count")
+
+#Box Plot for Lead Time
+boxplot(df$lead_time,main="leading time",col="blue")
 
 
 #Bar plot for City Reserved Rooms vs Assigned Rooms
@@ -70,8 +73,14 @@ resortRooms<-table(resortdata$reserved_room_type,resortdata$assigned_room_type)
 barplot(resortRooms,legend.text = TRUE, main="Resort: Reserved Rooms vs Assigned Rooms",xlab="Room Type",col=rainbow(8))
 
 
+#Bar PLot for Deposit Type
+ggplot(df) + geom_bar(aes(x = deposit_type)) + xlab("deposit_type") + ylab("count")
 
-#PieChartforCountries
+#Bar Plot for Meal Type
+ggplot(df) + geom_bar(aes(x = meal)) + xlab("meal") + ylab("count")
+
+
+#Pie Chart for Countries
 
 country_data <- as.data.frame(table(full_data_cln$country[full_data_cln$is_canceled == 0]))
 country_data <- country_data[order(-country_data$Freq), ]
@@ -85,7 +94,7 @@ labels <- paste(country_data_new$Var1, percentages, "%")
 pie(country_data_new$Freq, labels = labels, main = "Guests by Country")
 
 
-#boxblotforroomtypes
+#box plot for room types
 
  full_data_cln$adr_pp <- full_data_cln$adr / (full_data_cln$adults + full_data_cln$children)
  full_data_guests <- full_data_cln[full_data_cln$is_canceled == 0, ]
@@ -105,7 +114,7 @@ pie(country_data_new$Freq, labels = labels, main = "Guests by Country")
 
 
 
-#correlationpart
+#correlation part
 numeric_vars <- sapply(full_data_cln, is.numeric)
 numeric_data <- full_data_cln[, numeric_vars]
 cancel_corr <- cor(numeric_data$is_canceled, numeric_data)
