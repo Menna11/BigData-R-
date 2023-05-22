@@ -6,7 +6,7 @@ data$sum_nights<- data$stays_in_weekend_nights+ data$stays_in_week_nights
 
 
 #Data Cleaning
- dataset <- replace(data, data == "NULL", NA)
+ data <- replace(data, data == "NULL", NA)
  missing_values <- colSums(is.na(data))
  missing_values_count <- sum(is.na(data))
  nan_replacements <- list(children = 0.0, country = "Unknown", agent = 0, company = 0)
