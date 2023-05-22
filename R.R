@@ -74,10 +74,10 @@ barplot(resortRooms,legend.text = TRUE, main="Resort: Reserved Rooms vs Assigned
 
 
 #Bar PLot for Deposit Type
-ggplot(df) + geom_bar(aes(x = deposit_type)) + xlab("deposit_type") + ylab("count")
+ggplot(data) + geom_bar(aes(x = deposit_type)) + xlab("deposit_type") + ylab("count")
 
 #Bar Plot for Meal Type
-ggplot(df) + geom_bar(aes(x = meal)) + xlab("meal") + ylab("count")
+ggplot(data) + geom_bar(aes(x = meal)) + xlab("meal") + ylab("count")
 
 
 #Pie Chart for Countries
