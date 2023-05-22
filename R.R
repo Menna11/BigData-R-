@@ -59,7 +59,7 @@ ggplot(data) + geom_point(aes(x = days_in_waiting_list, y = arrival_date_month))
 ggplot(data) + geom_bar(aes(x =sum_nights, fill=hotel), position = "dodge")+ xlim(0,30) + xlab("Sum Of Nights") + ylab("Count")
 
 #Box Plot for Lead Time
-boxplot(df$lead_time,main="leading time",col="blue")
+boxplot(data$lead_time,main="leading time",col="blue")
 
 
 #Bar plot for City Reserved Rooms vs Assigned Rooms
